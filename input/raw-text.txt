@@ -1,0 +1,18 @@
+Customer Support Log — Ticket #4821
+
+From: jane.doe@alueducation.com
+Subject: Unable to access student portal
+
+Hi team, I've been trying to log into https://alueducation.com/portal since yesterday but keep getting an error. My alumni email john_smith@alumni.alueducation.com works fine on other systems, so I'm not sure what's going on.
+
+You can reach me on 0788123456 or my backup line +250798456123 if that's easier than email.
+
+Also, I noticed my last tuition payment (card ending processed as 4111111111111111) shows as pending on my end — can someone confirm it went through? I paid via https://www.alueducation.com/payments on the 3rd.
+
+For reference, our SI contact is sarah.k@si.alueducation.com and she cc'd support@alustudent.com on the original thread.
+
+One more thing — I tried calling 0700000 by mistake (wrong number, ignore that) and also got a spam text from "WIN NOW visit bit.ly/xyz123" which looks sketchy, please flag it.
+
+Attempted login again just now, still broken. Ticket opened at 14:32 on Sept 3rd.
+
+Not sure if related, but here's some garbage that should NOT match anything: <script>alert('test')</script> 12345 asdkj@@@ .com http:/broken-url random-text-no-pattern-here

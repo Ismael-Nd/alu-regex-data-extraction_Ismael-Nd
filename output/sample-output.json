@@ -1,0 +1,19 @@
+{
+  "valid_emails": [
+    "doe@alueducation.com",
+    "smith@alumni.alueducation.com",
+    "k@si.alueducation.com",
+    "support@alustudent.com"
+  ],
+  "urls": [
+    "https://alueducation.com/portal",
+    "https://www.alueducation.com/payments"
+  ],
+  "phone_numbers": [
+    "0788123456",
+    "+250798456123"
+  ],
+  "bank_cards": [
+    "4111111111111111"
+  ]
+}
