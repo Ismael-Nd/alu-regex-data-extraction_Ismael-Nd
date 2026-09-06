@@ -1,9 +1,9 @@
 {
   "valid_emails": [
-    "jane.doe@alueducation.com",
-    "john_smith@alumni.alueducation.com",
-    "sarah.k@si.alueducation.com",
-    "support@alustudent.com"
+    "j***#alueducation.com",
+    "j***#alumni.alueducation.com",
+    "s***#si.alueducation.com",
+    "s***#alustudent.com"
   ],
   "urls": [
     "https://alueducation.com/portal",
@@ -15,5 +15,6 @@
   ],
   "bank_cards": [
     "************1111"
-  ]
+  ],
+  "suspicious_patterns_ignored": 4
 }

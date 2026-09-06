@@ -16,6 +16,9 @@ url_pattern = r"https:\/\/(?:www\.)?[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+(?:\/[^\s]*
 # This regex matches visa style card numbers that starts with 4 and has 12 or 13 digits 
 card_pattern = r"4[0-9]{12}(?:[0-9]{3})?"
 
+# Used to detect suspicious content for logging purposses 
+suspicious_pattern = r"<script.*?>.*?</script>|--|;--|<[^>]>"
+
 ## Security Integrity ##
 
 def mask_card(card_number): 
@@ -23,26 +26,47 @@ def mask_card(card_number):
     # before it is stored or displayed 
     return "*" * (len(card_number) - 4) + card_number[-4:]
 
+def mask_email(email):
+    # Partialy marks the local part of an email
+    # so the full address insn't expossed in plain text
+    local, domain = email.split("@", 1)
+    masked_local = local[0] + "***" if len(local) > 1 else "*"
+    return f"{masked_local}#{domain}"
+
 def is_safe_length(text, max_length=100000):
     # Basic defence check for rejecting very large input 
     # before runnig regex against it
     return len(text) <= max_length
+
+def scan_for_suspicious_content(text):
+    # This detext but dosen't execute content 
+    # that are like injections attempt like html tags or SQL
+    matches = re.findall(suspicious_pattern, text, re.IGNORECASE | re.DOTALL)
+    return len(matches)
 
 ## THE EXTRACTION LOGIC ##
 
 with open("input/raw-text.txt", "r", encoding="utf-8") as f:
     raw_text = f.read()
 
+# Rejecting oversised input
 if not is_safe_length(raw_text):
     raise ValueError("The input text is too long for processing")
 
-# Any present script text in here is prossed as plain text data
+# detect suspicius content 
+suspicious_count = scan_for_suspicious_content(raw_text)
+if suspicious_count > 0: 
+    print(f"Warnig {suspicious_count} suspicious pattern(s) detected "
+    f"in input and ignored(not treated as valid data).")
+
+# Extraction, any present script text in here is prossed as plain text data
 # so it is never executed y the program
 results = {
-    "valid_emails" : re.findall(email_pattern, raw_text, re.MULTILINE),
-    "urls" : re.findall(url_pattern, raw_text, re.MULTILINE),
-    "phone_numbers": re.findall(phone_number_pattern, raw_text, re.MULTILINE),
+    "valid_emails" : [mask_email(e) for e in re.findall(email_pattern, raw_text)],
+    "urls" : re.findall(url_pattern, raw_text),
+    "phone_numbers": re.findall(phone_number_pattern, raw_text),
     "bank_cards": [mask_card(c) for c in re.findall(card_pattern, raw_text)],
+    "suspicious_patterns_ignored" : suspicious_count,
 }
 
 with open ("output/sample-output.json", "w", encoding="utf-8") as f:
