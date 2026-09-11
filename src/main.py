@@ -2,7 +2,7 @@ import re
 import json
 
 ## This regex matches ALU staff and optional student addresses
-email_pattern = r"[a-zA-Z0-9._%+-]+@(?:(?:alumni\.|si\.)?alueducation|alustudent)\.com"
+email_pattern = r"\b[a-zA-Z0-9._%+-]+@(?:alumni\.|si\.)?alueducation\.com\b"
 
 # The regex matches rwandan mobile numbers startinf with 078 or 079 
 # with an otional prefix of +250 or a 0. It also allows optional 
@@ -13,8 +13,9 @@ phone_number_pattern = r"(?:\+250|0)?7(?:8|9)\s?[0-9]{3}\s?[0-9]{3,4}"
 # The URL matches http and https with or without "www" with an optional path query or string after the domain 
 url_pattern = r"https:\/\/(?:www\.)?[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+(?:\/[^\s]*)?"
 
-# This regex matches visa style card numbers that starts with 4 and has 12 or 13 digits 
-card_pattern = r"4[0-9]{12}(?:[0-9]{3})?"
+# This regex matches visa style card numbers that starts with 4 and has 12 or 13 digits hello thsi is ismail ndagijimana 
+
+card_pattern = r"\b4[0-9]{12}(?:[0-9]{3})?\b"
 
 # Used to detect suspicious content for logging purposses 
 suspicious_pattern = r"<script.*?>.*?</script>|--|;--|<[^>]>"
